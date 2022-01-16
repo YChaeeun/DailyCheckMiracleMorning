@@ -13,12 +13,12 @@ import androidx.compose.ui.unit.dp
 import com.chaen.dailycheckmiraclemorning.ui.theme.DailyCheckMiracleMorningTheme
 
 @Composable
-fun Header() {
+fun Header(yearMonth: String) {
 	Column(
 		Modifier
 			.fillMaxWidth()
 			.padding(bottom = 8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-		YearMonthTitle()
+		YearMonthTitle(yearMonth)
 		Spacer(modifier = Modifier.height(25.dp))
 		WeekTitle()
 		Divider(
@@ -29,9 +29,9 @@ fun Header() {
 }
 
 @Composable
-fun YearMonthTitle() {
+fun YearMonthTitle(yearMonth: String) {
 	Row {
-		Text(text = "2022 JAN", style = MaterialTheme.typography.h6)
+		Text(text = yearMonth, style = MaterialTheme.typography.h6)
 	}
 }
 
@@ -50,6 +50,6 @@ fun WeekTitle() {
 @Composable
 fun Header_Preview() {
 	DailyCheckMiracleMorningTheme {
-		Header()
+		Header("2022 Jan")
 	}
 }

@@ -24,10 +24,9 @@ class MainActivity : ComponentActivity() {
 	@ExperimentalFoundationApi
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-
 		setContent {
 			DailyCheckMiracleMorningTheme {
-				CalendarView()
+				CalendarView(viewModel)
 			}
 		}
 	}
@@ -35,25 +34,23 @@ class MainActivity : ComponentActivity() {
 
 @ExperimentalFoundationApi
 @Composable
-fun CalendarView() {
+fun CalendarView(viewModel: MainViewModel) {
 	Column(
 		Modifier
 			.fillMaxSize()
 			.padding(horizontal = 16.dp)
 			.padding(top = 45.dp)) {
-		Header()
-		SetCalendarDay()
+		Header(viewModel.getHeaderTitle())
+		SetCalendarDay(viewModel.getDays())
 	}
 }
 
 
 @ExperimentalFoundationApi
 @Composable
-fun SetCalendarDay() {
-	val dayList = (0..31).toList()
-
+fun SetCalendarDay(days: List<Int>) {
 	LazyVerticalGrid(cells = GridCells.Fixed(7)) {
-		items(dayList) { item ->
+		items(days) { item ->
 			DayItem(item)
 		}
 	}
@@ -64,6 +61,6 @@ fun SetCalendarDay() {
 @Composable
 fun CalendarView_Preview() {
 	DailyCheckMiracleMorningTheme {
-		CalendarView()
+		CalendarView(MainViewModel())
 	}
 }
