@@ -19,7 +19,7 @@ fun Header(yearMonth: String) {
 			.fillMaxWidth()
 			.padding(bottom = 8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
 		YearMonthTitle(yearMonth)
-		Spacer(modifier = Modifier.height(25.dp))
+		Spacer(modifier = Modifier.height(30.dp))
 		WeekTitle()
 		Divider(
 			Modifier
