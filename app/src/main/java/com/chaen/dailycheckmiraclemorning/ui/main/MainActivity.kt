@@ -14,10 +14,11 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
 import com.chaen.dailycheckmiraclemorning.ui.calendar.Day
 import com.chaen.dailycheckmiraclemorning.ui.calendar.WeekNameHeader
 import com.chaen.dailycheckmiraclemorning.ui.calendar.YearMonthHeader
@@ -42,11 +43,15 @@ class MainActivity : ComponentActivity() {
 @ExperimentalFoundationApi
 @Composable
 fun CalendarView(viewModel: MainViewModel) {
-	HeaderView(viewModel)
+	Column {
+		HeaderView(viewModel)
 
-	LazyVerticalGrid(cells = GridCells.Fixed(7)) {
-		items(viewModel.getDays()) { item ->
-			Day(Icons.Default.AccountBox, item)
+		val showDialog = remember { mutableStateOf(false) }
+
+		LazyVerticalGrid(cells = GridCells.Fixed(7)) {
+			items(viewModel.getDays()) { item ->
+				Day(Icons.Default.AccountBox, item, showDialog)
+			}
 		}
 	}
 }
@@ -63,8 +68,6 @@ fun HeaderView(viewModel: MainViewModel) {
 @Preview(showBackground = true)
 fun CalendarView_Preview() {
 	DailyCheckMiracleMorningTheme {
-		Column {
-			CalendarView(MainViewModel())
-		}
+		CalendarView(MainViewModel())
 	}
 }
