@@ -19,19 +19,21 @@ import com.chaen.dailycheckmiraclemorning.ui.theme.DailyCheckMiracleMorningTheme
 @Composable
 fun Day(icon: ImageVector, day: Int) {
 	Column(Modifier.padding(6.dp)) {
-		Icon(
-			icon,
-			contentDescription = icon.name,
-			modifier = Modifier
-				.align(Alignment.CenterHorizontally)
-				.defaultMinSize(60.dp, 60.dp)
-		)
+		if (day > 0) {
+			Icon(
+				icon,
+				contentDescription = icon.name,
+				modifier = Modifier
+					.align(Alignment.CenterHorizontally)
+					.defaultMinSize(60.dp, 60.dp)
+			)
 
-		Text(
-			modifier = Modifier.align(Alignment.CenterHorizontally),
-			text = day.toString(),
-			style = MaterialTheme.typography.body2
-		)
+			Text(
+				modifier = Modifier.align(Alignment.CenterHorizontally),
+				text = day.toString(),
+				style = MaterialTheme.typography.body2
+			)
+		}
 	}
 }
 
